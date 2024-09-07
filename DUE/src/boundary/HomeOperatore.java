@@ -5,14 +5,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import javax.swing.JTextArea;
 
-public class Home {
+public class HomeOperatore {
 
 	private JFrame frame;
 
@@ -23,7 +20,7 @@ public class Home {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Home window = new Home();
+					HomeOperatore window = new HomeOperatore();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -35,7 +32,7 @@ public class Home {
 	/**
 	 * Create the application.
 	 */
-	public Home() {
+	public HomeOperatore() {
 		initialize();
 	}
 
@@ -45,42 +42,49 @@ public class Home {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(44, 62, 80));
+		frame.setBounds(100, 100, 788, 525);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setLayout(null);
 		panel.setBackground(new Color(39, 174, 96));
 		panel.setBounds(0, 0, 775, 74);
 		frame.getContentPane().add(panel);
-		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Dune Camping");
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 24));
-		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBackground(new Color(39, 174, 96));
-		lblNewLabel.setBounds(296, 10, 176, 54);
+		lblNewLabel.setBounds(293, 10, 179, 54);
 		panel.add(lblNewLabel);
 		
-		JButton btnNewButton = new JButton("Effettua una prenotazione");
-		btnNewButton.setForeground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 16));
-		btnNewButton.setBackground(new Color(39, 174, 96));
-		btnNewButton.setBounds(196, 246, 381, 44);
-		frame.getContentPane().add(btnNewButton);
+		JLabel lblNewLabel_1 = new JLabel("Operetors");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
+		lblNewLabel_1.setBounds(465, 35, 87, 18);
+		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton_1 = new JButton("Acquista un servizio");
+		JButton btnApriUnConto = new JButton("Apri un conto spesa");
+		btnApriUnConto.setForeground(Color.WHITE);
+		btnApriUnConto.setFont(new Font("Arial", Font.BOLD, 16));
+		btnApriUnConto.setBackground(new Color(39, 174, 96));
+		btnApriUnConto.setBounds(196, 246, 381, 44);
+		frame.getContentPane().add(btnApriUnConto);
+		
+		JButton btnNewButton_1 = new JButton("Registrazione pagamento");
+		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 16));
-		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(39, 174, 96));
 		btnNewButton_1.setBounds(196, 324, 381, 44);
 		frame.getContentPane().add(btnNewButton_1);
 		
-		JButton btnNewButton_1_1 = new JButton("Visualizza le disponibilità");
-		btnNewButton_1_1.setForeground(new Color(255, 255, 255));
+		JButton btnNewButton_1_1 = new JButton("Stampa del conto finale");
+		btnNewButton_1_1.setForeground(Color.WHITE);
 		btnNewButton_1_1.setFont(new Font("Arial", Font.BOLD, 16));
 		btnNewButton_1_1.setBackground(new Color(39, 174, 96));
 		btnNewButton_1_1.setBounds(196, 400, 381, 44);
 		frame.getContentPane().add(btnNewButton_1_1);
-		
 	}
-}
 
+}

@@ -146,6 +146,7 @@ public class EffettuaPrenotazione {
 		frmDue.getContentPane().add(lblNewLabel_2);
 		
 		txtMariorussogmailcom = new JTextField();
+		txtMariorussogmailcom.setFont(new Font("Arial", Font.BOLD, 16));
 		txtMariorussogmailcom.setText("\r\n");
 		txtMariorussogmailcom.setBounds(195, 209, 381, 32);
 		frmDue.getContentPane().add(txtMariorussogmailcom);
