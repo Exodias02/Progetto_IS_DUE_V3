@@ -97,6 +97,44 @@ public class SettoreDAO {
 		}
 	}
 	
+	
+	public static int getCodiceSettoreDAO (String categoria, String tipo) throws DAOException, DBConnectionException{
+		
+		int codice=-1;
+		
+		try {
+			Connection conn = DBManager.getConnection();
+			try {
+				String query = "SELECT CODICE FROM SETTORI WHERE CATEGORIA=? AND TIPO=?;";
+				
+				PreparedStatement stmt = conn.prepareStatement(query);
+				
+				stmt.setString(1, categoria);
+				stmt.setString(2, tipo);
+				
+				ResultSet result = stmt.executeQuery();
+				
+				if(result.next()) {
+					codice = result.getInt(1);
+				}
+				
+			}catch(SQLException e) {
+				throw new DAOException("Errore scrittura Settore " + e.getMessage() + " " + e.getErrorCode() );
+			} finally {
+				DBManager.closeConnection();
+			}
+		
+		}catch(SQLException e) {
+			throw new DBConnectionException("Errore connessione al database");
+		}
+		
+		return codice;
+		
+		
+	}
+	
+	
+	
 	public static void updateSettore(Settore s, int codice) throws DAOException, DBConnectionException{
 		try {
 			Connection conn = DBManager.getConnection();

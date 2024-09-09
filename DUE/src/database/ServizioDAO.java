@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import entity.Servizio;
 import exception.DAOException;
@@ -11,6 +12,74 @@ import exception.DBConnectionException;
 
 public class ServizioDAO {
 
+	public static ArrayList<Servizio> getServizi() throws DAOException, DBConnectionException {
+		ArrayList<Servizio> servizi = new ArrayList<Servizio>();
+		try {
+			Connection conn = DBManager.getConnection();
+			try {
+				String query = "SELECT * FROM SERVIZI";
+				
+				PreparedStatement stmt = conn.prepareStatement(query);
+				ResultSet result = stmt.executeQuery();
+				
+				while(result.next()) {
+					Servizio s = new Servizio(
+							result.getFloat(1),
+							result.getString(2),
+							result.getInt(3)
+						);
+					servizi.add(s);
+				}
+			}catch(SQLException e) {
+				throw new DAOException("Errore lettura dei servizi");
+			}finally {
+				DBManager.closeConnection();
+			}	
+		}catch (SQLException e) {
+			throw new DBConnectionException("Errore di connessione al database");
+		}
+		if(servizi.isEmpty()) {
+			servizi = null;
+		}
+		return servizi;
+	}
+	/*
+public static float getPrezzoServizio (int codiceServizio) throws DAOException, DBConnectionException {
+		
+		float prezzo = -1;
+		
+		try {
+			Connection conn = DBManager.getConnection();
+			
+			try {
+				String query = "SELECT PREZZO FROM SERVIZI WHERE ID = ?;";
+				
+				PreparedStatement stmt = conn.prepareStatement(query);
+				
+				stmt.setInt(1, codiceServizio);
+				
+				ResultSet result = stmt.executeQuery();
+				
+				if(result.next()) {
+					prezzo = result.getFloat(1);
+				}
+				
+				
+			}catch(SQLException e) {
+				throw new DAOException("Errore lettura del prezzo del servizio: " + e.getMessage());
+			}finally {
+				DBManager.closeConnection();
+			}	
+		}catch (SQLException e) {
+			throw new DBConnectionException("Errore di connessione al DataBase");
+		}
+		
+		
+		return prezzo;
+		
+		
+	}
+	*/
 	public static Servizio readServizio(int id) throws DAOException, DBConnectionException {
 		Servizio eS = null;
 		try {

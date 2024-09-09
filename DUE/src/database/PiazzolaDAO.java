@@ -46,13 +46,13 @@ public class PiazzolaDAO {
 			
 			try {
 				String query = "SELECT * FROM PIAZZOLE P JOIN SETTORI S ON P.SETTORE=? "
-						+ "WHERE P.ID IN (SELECT PR.PIAZZOLA FROM PRENOTAZIONI PR WHERE PR.DATAFINE < ? OR PR.DATAINIZIO > ?);";
+						+ "WHERE P.ID NOT IN (SELECT PR.PIAZZOLA FROM PRENOTAZIONI PR WHERE PR.DATAINIZIO <= ? AND PR.DATAFINE >= ?);";
 				
 				PreparedStatement stmt = conn.prepareStatement(query);
 				
 				stmt.setInt(1, codiceSettore);
-				stmt.setString(2, inizio.toString());
-				stmt.setString(3, fine.toString());
+				stmt.setString(2, fine.toString());
+				stmt.setString(3, inizio.toString());
 				
 				ResultSet result = stmt.executeQuery();
 				

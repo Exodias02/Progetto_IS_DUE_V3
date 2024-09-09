@@ -70,6 +70,7 @@ private static void registrazionePagamento() {
 			while(!InputValido) {
 				System.out.println(" Inserisci il codice del conto spesa del cliente: ");
 				risposta = scan.nextLine();
+				prova=true;
 				for (int i = 0; i< risposta.length() && prova; i++) {
 					if(risposta.charAt(i)<'0' || risposta.charAt(i) > '9'  ) {
 						prova = false;
@@ -86,7 +87,7 @@ private static void registrazionePagamento() {
 	}catch(OperationException e) {
 		System.out.println(e.getMessage());
 	}
-	
+	/*
 	System.out.println("Digita 'Yes' per confermare il pagamento o qualunque altro carattere per annullare..");
 	String conferma = scan.nextLine();
 	
@@ -107,7 +108,7 @@ private static void registrazionePagamento() {
 	}catch (Exception e) {
 		System.out.println("Unexpected exception, riprovare..");
 	}
-	
+	*/
 }
 
 

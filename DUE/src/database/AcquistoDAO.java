@@ -46,10 +46,48 @@ public class AcquistoDAO {
 			throw new DBConnectionException("Errore connessione database");
 		}
 	}
+	/*
+	public static String getDataAcquisto (int codiceServizio) throws DAOException, DBConnectionException {
+		
+		String data = new String();
+		
+		try {
+			Connection conn = DBManager.getConnection();
+			
+			try {
+				String query = "SELECT DATAACQUISTO FROM ACQUISTI WHERE SERVIZIO = ?;";
+				
+				PreparedStatement stmt = conn.prepareStatement(query);
+				
+				stmt.setInt(1, codiceServizio);
+				
+				ResultSet result = stmt.executeQuery();
+				
+				while(result.next()) {
+					data = new String (result.getString(1));
+				}
+				
+				
+			}catch(SQLException e) {
+				throw new DAOException("Errore lettura della data di acquisto: " + e.getMessage());
+			}finally {
+				DBManager.closeConnection();
+			}	
+		}catch (SQLException e) {
+			throw new DBConnectionException("Errore di connessione al DataBase");
+		}
+		
+		
+		return data;
+		
+		
+	}
+	
+	*/
+	
 	
 	
 	public static ArrayList<Servizio> getListaServizi(int codice) throws DAOException, DBConnectionException {
-		
 		ArrayList<Servizio> vettore = new ArrayList<Servizio>();
 		Servizio eS;
 		
@@ -87,7 +125,7 @@ public class AcquistoDAO {
 	}
 	
 	
-	public static Acquisto readAquisto(int codice) throws DAOException, DBConnectionException{
+	public static Acquisto readAcquisto(int codice) throws DAOException, DBConnectionException{
 		Acquisto a = null;
 		
 		try {

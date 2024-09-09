@@ -5,17 +5,23 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JPanel;
+import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
-public class HomeOperatore {
+import exception.OperationException;
+
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.awt.event.ActionEvent;
+
+public class HomeClienteRegistrato {
 
 	JFrame frame;
 
@@ -26,7 +32,7 @@ public class HomeOperatore {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomeOperatore window = new HomeOperatore();
+					HomeClienteRegistrato window = new HomeClienteRegistrato();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +44,7 @@ public class HomeOperatore {
 	/**
 	 * Create the application.
 	 */
-	public HomeOperatore() {
+	public HomeClienteRegistrato() {
 		initialize();
 	}
 
@@ -49,36 +55,30 @@ public class HomeOperatore {
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.getContentPane().setBackground(new Color(44, 62, 80));
-		frame.setBounds(100, 100, 788, 525);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		
 		JPanel panel = new JPanel();
-		panel.setLayout(null);
 		panel.setBackground(new Color(39, 174, 96));
 		panel.setBounds(0, 0, 775, 74);
 		frame.getContentPane().add(panel);
+		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Dune Camping");
-		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 24));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBackground(new Color(39, 174, 96));
-		lblNewLabel.setBounds(293, 10, 179, 54);
+		lblNewLabel.setBounds(296, 10, 176, 54);
 		panel.add(lblNewLabel);
 		
+		
 		JLabel LOGO = new JLabel("");
-		LOGO.setBounds(338, 125, 100, 100);
+		LOGO.setBounds(336, 109, 100, 100);
 		ImageIcon i = new ImageIcon(EffettuaPrenotazione.class.getResource("/images/logo.png"));
 		Image ok = i.getImage().getScaledInstance(LOGO.getWidth(), LOGO.getHeight(), Image.SCALE_SMOOTH);
 		LOGO.setIcon(new ImageIcon(ok));
 		LOGO.setFont(new Font("Arial", Font.PLAIN, 12));
 		frame.getContentPane().add(LOGO);
-		
-		JLabel lblNewLabel_1 = new JLabel("Operators");
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD | Font.ITALIC, 14));
-		lblNewLabel_1.setBounds(465, 35, 87, 18);
-		panel.add(lblNewLabel_1);
 		
 		JButton btnNewButton_1_2 = new JButton("< LogOut");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
@@ -102,50 +102,73 @@ public class HomeOperatore {
 		btnNewButton_1_2.setBounds(10, 22, 102, 34);
 		panel.add(btnNewButton_1_2);
 		
-		JButton btnApriUnConto = new JButton("Apri un conto spesa");
-		btnApriUnConto.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("Effettua una prenotazione");
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
+			try {
+				EffettuaPrenotazione window = new EffettuaPrenotazione();
+				window.frmDue.setVisible(true);
+				frame.setVisible(false);
 				
-				try {
-					RitornoHome window = new RitornoHome();
-					window.setPagina(2);
-					window.setMessage("Questa funzione non è al momento disponibile :(");
-					window.frame.setVisible(true);
-					frame.setVisible(false);
-					
-				} catch (NumberFormatException e1) {
-					System.out.println(e1.getMessage());
-				}
-				
+			} catch (NumberFormatException e1) {
+				System.out.println(e1.getMessage());
+			}
 			}
 		});
-		btnApriUnConto.setForeground(Color.WHITE);
-		btnApriUnConto.setFont(new Font("Arial", Font.BOLD, 16));
-		btnApriUnConto.setBackground(new Color(39, 174, 96));
-		btnApriUnConto.setBounds(196, 265, 381, 44);
-		frame.getContentPane().add(btnApriUnConto);
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 16));
+		btnNewButton.setBackground(new Color(39, 174, 96));
+		btnNewButton.setBounds(196, 246, 381, 44);
+		frame.getContentPane().add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Registrazione pagamento");
+		JButton btnNewButton_1 = new JButton("Acquista un servizio");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+		
 				try {
-					RegistrazionePagamento window = new RegistrazionePagamento();
-					window.frame.setVisible(true);
+					AcquistaServizio window2 = new AcquistaServizio();
+					window2.frame.setVisible(true);
 					frame.setVisible(false);
 					
 				} catch (NumberFormatException e1) {
 					System.out.println(e1.getMessage());
 				}
 				
-			
+				
 			}
 		});
-		btnNewButton_1.setForeground(Color.WHITE);
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 16));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
 		btnNewButton_1.setBackground(new Color(39, 174, 96));
-		btnNewButton_1.setBounds(196, 343, 381, 44);
+		btnNewButton_1.setBounds(196, 324, 381, 44);
 		frame.getContentPane().add(btnNewButton_1);
+		
+		JButton btnNewButton_1_1 = new JButton("Visualizza le disponibilità");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				try {
+					RitornoHome window3 = new RitornoHome();
+					window3.setPagina(1);
+					window3.setMessage("Questa funzione non è al momento disponibile :(");
+					window3.frame.setVisible(true);
+					frame.setVisible(false);
+					
+				} catch (NumberFormatException e1) {
+					System.out.println(e1.getMessage());
+				}
+				
+			}
+		});
+		btnNewButton_1_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1_1.setFont(new Font("Arial", Font.BOLD, 16));
+		btnNewButton_1_1.setBackground(new Color(39, 174, 96));
+		btnNewButton_1_1.setBounds(196, 400, 381, 44);
+		frame.getContentPane().add(btnNewButton_1_1);
+		
+		frame.setBounds(100, 100, 788, 527);
+		
 	}
-
 }
+
